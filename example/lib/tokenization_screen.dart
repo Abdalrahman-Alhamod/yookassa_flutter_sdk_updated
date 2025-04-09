@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yookassa_payments_flutter/yookassa_payments_flutter.dart';
-import 'package:yookassa_payments_flutter_example/success_tokenization_screen.dart';
+import './success_tokenization_screen.dart';
 
 class TokenizationScreen extends StatefulWidget {
   const TokenizationScreen({Key? key}) : super(key: key);
@@ -66,20 +66,29 @@ class TokenizationScreenState extends State<TokenizationScreen> {
           PaymentMethod.sberbank,
           PaymentMethod.sbp
         ])),
-        testModeSettings: null);
+        testModeSettings: null
+        );
     var result =
         await YookassaPaymentsFlutter.tokenization(tokenizationModuleInputData);
     if (result is SuccessTokenizationResult) {
-      Navigator.push(
+      if (mounted) {
+        Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => SuccessTokenizationScreen(
-                  result: result,
-                  tokenizationData: tokenizationModuleInputData)));
+            builder: (BuildContext context) => SuccessTokenizationScreen(
+                result: result, tokenizationData: tokenizationModuleInputData),
+          ),
+        );
+      }
     } else if (result is ErrorTokenizationResult) {
-      showDialog(
+      if (mounted) {
+        showDialog(
           context: context,
-          builder: (context) => AlertDialog(content: Text(result.error)));
+          builder: (context) => AlertDialog(
+            content: Text(result.error),
+          ),
+        );
+      }
       return;
     }
   }

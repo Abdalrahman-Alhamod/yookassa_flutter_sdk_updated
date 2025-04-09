@@ -1,4 +1,4 @@
-import 'package:yookassa_payments_flutter/models/payment_method_types.dart';
+import 'payment_method_types.dart';
 
 class TokenizationResult {
   TokenizationResult._();

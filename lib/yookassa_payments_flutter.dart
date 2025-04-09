@@ -12,7 +12,7 @@ export 'input_data/tokenization_module_input_data.dart';
 import 'input_data/saved_card_module_input_data.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:yookassa_payments_flutter/models/tokenization_result.dart';
+import 'models/tokenization_result.dart';
 import 'input_data/tokenization_module_input_data.dart';
 import 'models/payment_method_types.dart';
 
